@@ -33,9 +33,9 @@ if __name__ == "__main__":
                 cv2.circle(frame, nose, 3, (0, 255, 0))
                 cv2.line(frame, mouth_left, mouth_right, (0, 255, 0))
 
-        cv2.imshow('window', frame)
+        cv2.imshow("window", frame)
         key = cv2.waitKey(1)
-        if key == ord('q'):
+        if key == ord("q"):
             break
     cap.release()
     cv2.destroyAllWindows()
