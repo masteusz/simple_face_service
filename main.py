@@ -12,20 +12,20 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def web_interface():
-    return render_template('example.html', title='Welcome', username="test")
+    return render_template("example.html", title="Welcome", username="test")
 
 
-@app.route('/', methods=['POST'])
+@app.route("/", methods=["POST"])
 def upload_file():
-    uploaded_file = request.files['file']
-    if uploaded_file.filename != '':
+    uploaded_file = request.files["file"]
+    if uploaded_file.filename != "":
         uploaded_file.save(uploaded_file.filename)
-    return redirect(url_for('web_interface'))
+    return redirect(url_for("web_interface"))
 
 
-@app.route('/api/detect', methods=['POST'])
+@app.route("/api/detect", methods=["POST"])
 def detect_face():
     detector = model.get_model()
     uploaded_file = request.data
