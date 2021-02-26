@@ -16,8 +16,7 @@
         <div class="form-group">
           <label>Select image</label>
           <div class="custom-file">
-            <input type="file" class="custom-file-input" name="image" id="image">
-            <label class="custom-file-label" for="image">Select image...</label>
+            <input type="file" class="form-control" name="image" id="uploadImage">
           </div>
         </div>
 
@@ -26,6 +25,14 @@
       </form>
 
     </div>
+  </div>
+  <hr/>
+  <div class="row">
+    {% if filename %}
+	<div>
+		<img src="{{ url_for('static', filename=filename) }}" class="img-fluid">
+	</div>
+{% endif %}
   </div>
 </div>
 

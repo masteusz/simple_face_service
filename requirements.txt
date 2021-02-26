@@ -4,3 +4,5 @@ opencv-python~=4.5.1.48
 PyYAML~=5.4.1
 scipy~=1.6.1
 tensorflow~=2.4.1
+Flask~=1.1.2
+Werkzeug~=1.0.1
