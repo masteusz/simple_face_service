@@ -1,4 +1,5 @@
 import logging
+
 from mtcnn.mtcnn import MTCNN
 
 logger = logging.getLogger(__name__)
@@ -17,3 +18,8 @@ def _load_model():
     logger.info("Loading model")
     global model
     model = MTCNN()
+
+
+def detect_faces(img):
+    detector = get_model()
+    return detector.detect_faces(img)
