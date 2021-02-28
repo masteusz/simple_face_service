@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  face_service:
+    build: .
+    environment:
+      - CONFIG_PATH=config/config.yaml
+      - NUM_WORKERS=1
+      - NUM_THREADS=1
+    ports:
+      - 8000:8000
+  integration_tests:
+    build: .
+    entrypoint: ['python3', '-m', 'pytest', 'tests/integration', '--verbose']
+  unit_tests:
+    build: .
+    entrypoint: ['python3', '-m', 'pytest', 'tests/unit', '--verbose']

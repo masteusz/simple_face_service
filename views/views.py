@@ -7,7 +7,7 @@ import cv2
 from flask import Blueprint, render_template, request, redirect, current_app, abort
 from werkzeug.utils import secure_filename
 
-from model.model import detect_faces
+from model.model import get_detector
 from utils import convert_to_cv_image, check_image, paint_faces
 
 detector_blueprint = Blueprint("detector_blueprint", __name__)
@@ -15,7 +15,7 @@ detector_blueprint = Blueprint("detector_blueprint", __name__)
 logger = logging.getLogger(__name__)
 
 
-@detector_blueprint.route("/web-faces", methods=["GET", "POST"])
+@detector_blueprint.route("/", methods=["GET", "POST"])
 def web_faces():
     if request.method == "POST":
         if request.files:
@@ -25,7 +25,8 @@ def web_faces():
             filename = secure_filename(image.filename)
             logger.info("Successfully uploaded image")
             cvimage = convert_to_cv_image(image)
-            faces = detect_faces(cvimage)
+            model = get_detector()
+            faces = model.detect_faces(cvimage)
             faceimg = paint_faces(cvimage, faces)
             cv2.imwrite(
                 os.path.join(current_app.config["UPLOAD_FOLDER"], filename), faceimg
@@ -49,6 +50,7 @@ def detect_face():
         logger.error("Extension not allowed")
         abort(415)
     image = convert_to_cv_image(request.data)
-    res = detect_faces(image)
+    model = get_detector()
+    res = model.detect_faces(image)
     logger.info(f"Found {len(res)} faces in the image")
     return json.dumps(res)
