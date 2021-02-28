@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+from io import BytesIO
 
 import cv2
 from flask import Blueprint, render_template, request, redirect, current_app, abort
@@ -43,6 +44,9 @@ def detect_face():
     logger.info("Detecting faces")
     if len(request.data) == 0:
         logger.error("No data received")
+        abort(415)
+    if not check_image(BytesIO(request.data)):
+        logger.error("Extension not allowed")
         abort(415)
     image = convert_to_cv_image(request.data)
     res = detect_faces(image)
