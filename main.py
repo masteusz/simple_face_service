@@ -1,4 +1,5 @@
 import logging
+from pathlib import Path
 
 from flask import Flask
 
@@ -18,6 +19,10 @@ app.config["ALLOWED_IMAGE_EXTENSIONS"] = config.get(
 app.config["CONFIDENCE"] = config.get("default_confidence", 0.90)
 app.register_blueprint(detector_blueprint)
 
+# Creating upload folder in case it doesn't exist
+Path(app.config["UPLOAD_FOLDER"]).mkdir(exist_ok=True)
+
+# Preloading model
 get_detector()
 
 if __name__ == "__main__":
