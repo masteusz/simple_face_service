@@ -26,9 +26,11 @@ By default the application listens on the 8000 port.
 
 ### Web interface
 
-Assuming that you have started the app locally, visit the: [http://localhost:8000](http://localhost:8000). You should
-see following interface:
+Assuming that you have started the app locally, visit the: [http://localhost:8000](http://localhost:8000). 
+
+You should see following interface:
 ![web interface](images/screen.png)
+
 Detection is applied immediately after uploading an image. Image itself is lightened a bit to make boxes more visible.
 
 ### REST API
