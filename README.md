@@ -13,7 +13,18 @@ the [MTCNN face detector](https://github.com/ipazc/mtcnn).
 There is a dockerfile available that allows to build and run the application easily. The container deployment uses
 gunicorn as a server.
 
-I set up a simple CI using Github Actions. No docker image is pushed anywhere.
+I set up a simple CI using Github Actions. No docker image is pushed anywhere, but that's a possibility.
+
+## Rationale
+
+I wanted the service to be more or less "stateless", meaning that it should be easy horizontally scalable.
+The service itself is simple, but it makes it easy to embed into more complex flow i.e. task queue or nginx web server.
+
+Web interface is done simply to visualize results and isn't intended to be a "production" thing. 
+I feel it's easier to look at images instead of just a JSON list of numbers.
+
+The detector itself isn't perfect, but is pretty good. It also allows for some precision/recall tuning thanks
+to confidence setting.
 
 ## Installation
 
@@ -94,6 +105,6 @@ The service returns a JSON containing list of objects in a following form:
 ]
 ```
 
-Box format: [x, y, width, height]
+Box format: `[x, y, width, height]`
 
-Features format: [x, y]
+Features format: `[x, y]`
