@@ -13,6 +13,8 @@ the [MTCNN face detector](https://github.com/ipazc/mtcnn).
 There is a dockerfile available that allows to build and run the application easily. The container deployment uses
 gunicorn as a server.
 
+I set up a simple CI using Github Actions. No docker image is pushed anywhere.
+
 ## Installation
 
 To build and run the application using docker-compose run:
