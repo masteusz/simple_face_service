@@ -54,3 +54,8 @@ def detect_face():
     res = model.detect_faces(image)
     logger.info(f"Found {len(res)} faces in the image")
     return json.dumps(res)
+
+
+@detector_blueprint.route("/healthcheck", methods=["GET"])
+def healthcheck():
+    return json.dumps({"OK": True}), 200, {"ContentType": "application/json"}

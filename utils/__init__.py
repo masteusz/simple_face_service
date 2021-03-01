@@ -1,9 +1,12 @@
 import imghdr
 import io
+import json
 import logging
+import os
 
 import cv2
 import numpy as np
+import yaml
 from flask import current_app
 from werkzeug.datastructures import FileStorage
 
@@ -46,3 +49,16 @@ def convert_to_cv_image(fstrm) -> np.ndarray:
     else:
         imgstream = io.BytesIO(fstrm)
     return cv2.imdecode(np.fromstring(imgstream.read(), np.uint8), 1)
+
+
+def load_as_dictionary(file_path):
+    with open(file_path, "rt") as info_file:
+        return {
+            ".yaml": lambda: yaml.safe_load(info_file.read()),
+            ".json": lambda: json.load(info_file),
+        }[os.path.splitext(file_path)[1]]()
+
+
+def ensure_env(env_name, default_value):
+    if env_name not in os.environ:
+        os.environ[env_name] = default_value

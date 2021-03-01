@@ -2,8 +2,6 @@
 
 A service providing REST API for face detection.
 
-## Rationale
-
 I created two endpoints:
 
 * REST endpoint for "production" usage
