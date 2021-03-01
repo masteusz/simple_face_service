@@ -17,10 +17,24 @@ I set up a simple CI using Github Actions. No docker image is pushed anywhere.
 
 ## Installation
 
+### Docker
 To build and run the application using docker-compose run:
 `docker-compose -f docker-compose.yml up face_service`
 
-By default the application listens on the 8000 port.
+By default, the application listens on the 8000 port.
+
+### Manual install
+
+```apt-get -y install build-essential gcc g++ python3-dev python3-opencv```
+
+```pip install --trusted-host pypi.python.org -r requirements.txt```
+
+Running with Flask:
+```python3 main.py```
+
+Running with Gunicorn:
+```sh entrypoint.sh```
+
 
 ## Usage
 
@@ -83,13 +97,3 @@ The service returns a JSON containing list of objects in a following form:
 Box format: [x, y, width, height]
 
 Features format: [x, y]
-
-## Tests
-
-### Unit tests
-
-`docker-compose -f docker-compose.yml up unit_tests`
-
-### Integration tests
-
-`docker-compose -f docker-compose.yml up integration_tests`
