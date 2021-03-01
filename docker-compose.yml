@@ -9,11 +9,6 @@ services:
       - NUM_THREADS=1
     ports:
       - 8000:8000
-  integration_tests:
-    build: .
-    depends_on:
-      - face_service
-    entrypoint: ['python3', '-m', 'pytest', 'tests/integration', '--verbose']
   unit_tests:
     build: .
     entrypoint: ['python3', '-m', 'pytest', 'tests/unit', '--verbose']
