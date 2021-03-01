@@ -5,10 +5,10 @@ import pytest
 from utils import check_image
 
 EXAMPLE_LIST = [
-    ('examples/1.jpeg', True),
-    ('examples/2.jpeg', True),
-    ('examples/3.png', True),
-    ('examples/empty.bmp', False),
+    ("examples/1.jpeg", True),
+    ("examples/2.jpeg", True),
+    ("examples/3.png", True),
+    ("examples/empty.bmp", False),
 ]
 
 
