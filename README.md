@@ -67,6 +67,24 @@ curl --location --request POST 'localhost:8000/api/detect' \
 --data-binary '@examples/1.jpeg'
 ```
 
+#### Optional `confidence` argument
+
+You can specify the confidence level at which you want to receive faces in the response.
+High confidence will filter out some objects that might not be faces.
+
+Confidence argument accepts values from 0.0 to 1.0. 
+Values from 0.9 to 0.99 are recommended.
+
+Usage:
+
+```bash
+curl --location --request POST 'localhost:8000/api/detect?confidence=0.99' \
+--header 'Content-Type: image/jpeg' \
+--data-binary '@examples/1.jpeg'
+```
+
+Confidence is also configurable using config file.
+
 #### Example response
 
 The service returns a JSON containing list of objects in a following form:
