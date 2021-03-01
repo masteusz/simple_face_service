@@ -15,6 +15,8 @@ def check_image(img: io.BytesIO) -> bool:
         logger.warning("Img is None")
         return False
     ext = imghdr.what(file=img)
+    if ext is None:
+        return False
     if not ext.upper() in current_app.config["ALLOWED_IMAGE_EXTENSIONS"]:
         logger.warning("Extension not allowed")
         return False

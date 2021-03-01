@@ -4,7 +4,7 @@ import os
 from io import BytesIO
 
 import cv2
-from flask import Blueprint, render_template, request, redirect, current_app, abort
+from flask import Blueprint, render_template, request, current_app, abort
 from werkzeug.utils import secure_filename
 
 from model.model import get_detector
@@ -21,7 +21,7 @@ def web_faces():
         if request.files:
             image = request.files["image"]
             if not check_image(image.stream):
-                redirect(request.url)
+                abort(415)
             filename = secure_filename(image.filename)
             logger.info("Successfully uploaded image")
             cvimage = convert_to_cv_image(image)

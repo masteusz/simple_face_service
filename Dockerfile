@@ -7,7 +7,7 @@ RUN apt-get update && \
 # install requirements
 COPY requirements.txt /app/requirements.txt
 
-RUN pip install --trusted-host pypi.python.org -r /app/requirements.txt --no-cache-dir
+RUN pip install --trusted-host pypi.python.org -r /app/requirements.txt
 
 # copy project files
 COPY . /app
