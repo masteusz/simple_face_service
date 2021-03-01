@@ -26,6 +26,7 @@ I feel it's easier to look at images instead of just a JSON list of numbers.
 The detector itself isn't perfect, but is pretty good. It also allows for some precision/recall tuning thanks
 to confidence setting.
 
+I also tried to make service to integrate easily with Helm/Helmsman config for automated deployment in K8s.
 ## Installation
 
 ### Docker
