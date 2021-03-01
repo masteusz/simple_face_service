@@ -5,6 +5,7 @@ from io import BytesIO
 
 import cv2
 from flask import Blueprint, render_template, request, current_app, abort
+from flask_restful import reqparse
 from werkzeug.utils import secure_filename
 
 from model.model import get_detector
@@ -49,11 +50,25 @@ def detect_face():
     if not check_image(BytesIO(request.data)):
         logger.error("Extension not allowed")
         abort(415)
+
+    parser = reqparse.RequestParser()
+    parser.add_argument(
+        "confidence", type=float, default=current_app.config["CONFIDENCE"]
+    )
+    args = parser.parse_args()
+
+    if args.get("confidence") < 0.0 or args.get("confidence") > 1.0:
+        abort(412)
+
     image = convert_to_cv_image(request.data)
     model = get_detector()
     res = model.detect_faces(image)
-    logger.info(f"Found {len(res)} faces in the image")
-    return json.dumps(res)
+    logger.info(f"Found {len(res)} faces in the image.")
+    filtered_faces = [i for i in res if i.get("confidence") >= args.get("confidence")]
+    logger.info(
+        f'Filtering with confidence {args.get("confidence")}. {len(filtered_faces)} faces left.'
+    )
+    return json.dumps(filtered_faces)
 
 
 @detector_blueprint.route("/healthcheck", methods=["GET"])

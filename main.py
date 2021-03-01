@@ -15,6 +15,7 @@ app.config["MAX_CONTENT_LENGTH"] = config.get("max_content_length", 16 * 1024 * 
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = config.get(
     "allowed_image_extensions", ["JPEG", "JPG", "PNG"]
 )
+app.config["CONFIDENCE"] = config.get("default_confidence", 0.90)
 app.register_blueprint(detector_blueprint)
 
 get_detector()

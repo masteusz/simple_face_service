@@ -3,3 +3,4 @@ upload_folder: "static"
 max_content_length: 16777216 # 16 * 1024 * 1024
 allowed_image_extensions: ["JPEG", "JPG", "PNG"]
 secret_key: secret
+default_confidence: 0.95
