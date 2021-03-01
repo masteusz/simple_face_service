@@ -127,3 +127,7 @@ The service returns a JSON containing list of objects in a following form:
 Box format: `[x, y, width, height]`
 
 Features format: `[x, y]`
+
+# Issues
+
+* Model is biased towards white people. It recognizes people of color with much lower confidence.
